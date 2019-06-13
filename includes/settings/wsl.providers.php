@@ -173,6 +173,7 @@ $WORDPRESS_SOCIAL_LOGIN_PROVIDERS_CONFIG = ARRAY(
 		"provider_id"       => "WindowsLive",
 		"provider_name"     => "Windows Live",
 		"require_client_id" => true,
+		"callback"          => true,
 		"new_app_link"      => "https://account.live.com/developers/applications/create",
 	),
 	ARRAY(
