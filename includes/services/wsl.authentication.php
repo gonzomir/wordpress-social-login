@@ -947,6 +947,12 @@ function wsl_process_login_build_provider_config( $provider )
 		$config["providers"][$provider]["scope"] = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
 	}
 
+	// set custom config for windowslive
+	if( strtolower( $provider ) == "windowslive" )
+	{
+		$config["providers"][$provider]["scope"] = "wl.basic wl.contacts_emails wl.emails wl.signin";
+	}
+
 	$provider_scope = isset( $config["providers"][$provider]["scope"] ) ? $config["providers"][$provider]["scope"] : '';
 
 	// HOOKABLE: allow to overwrite scopes
