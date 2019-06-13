@@ -31,7 +31,6 @@ $WORDPRESS_SOCIAL_LOGIN_PROVIDERS_CONFIG = ARRAY(
 		"require_client_id" => true,
 		"callback"          => true,
 		"new_app_link"      => "https://developers.facebook.com/apps",
-
 		"default_network"   => true,
 	),
 	ARRAY(
@@ -40,7 +39,6 @@ $WORDPRESS_SOCIAL_LOGIN_PROVIDERS_CONFIG = ARRAY(
 		"callback"          => true,
 		"require_client_id" => true,
 		"new_app_link"      => "https://console.developers.google.com",
-
 		"default_network"   => true,
 	),
 	ARRAY(
@@ -48,7 +46,6 @@ $WORDPRESS_SOCIAL_LOGIN_PROVIDERS_CONFIG = ARRAY(
 		"provider_name"     => "Twitter",
 		"callback"          => true,
 		"new_app_link"      => "https://dev.twitter.com/apps",
-
 		"default_network"  => true,
 	),
 	ARRAY(
