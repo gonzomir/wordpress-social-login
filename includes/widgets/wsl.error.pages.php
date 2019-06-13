@@ -157,20 +157,20 @@ if( ! function_exists( 'wsl_render_error_page' ) )
 
 			<h1><?php _wsl_e("We're unable to complete your request", 'wordpress-social-login') ?>!</h1>
 
-			<?php 
-				if(! empty($message) ){ 
+			<?php
+				if(! empty($message) ){
 					?>
 						<p><?php echo $message; ?></p>
-					<?php 
+					<?php
 				}
 			?>
 
-			<?php 
-				if(! empty($api_error) ){ 
+			<?php
+				if(! empty($api_error) ){
 					?>
-						<p id="technical-details-btn"><a href="javascript:showTechnicals()">Show technical details</a></p>
+						<p id="technical-details-btn"><button onclick="javascript:showTechnicals()">Show technical details</button></p>
 
-						<p id="technical-details-message"><code><?php echo htmlentities($api_error); ?></code></p>
+						<p id="technical-details-message"><code><?php echo esc_html($api_error); ?></code></p>
 
 						<script>
 							function showTechnicals(){
@@ -180,7 +180,7 @@ if( ! function_exists( 'wsl_render_error_page' ) )
 								return false;
 							}
 						</script>
-					<?php 
+					<?php
 				}
 			?>
 
