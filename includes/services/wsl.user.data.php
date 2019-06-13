@@ -44,9 +44,7 @@ function wsl_wp_email_exists( $email )
 function wsl_get_wordpess_users_count()
 {
 	global $wpdb;
-
 	$sql = "SELECT COUNT( * ) AS items FROM `$wpdb->users`";           
-
 	return $wpdb->get_var( $sql );
 }
 
@@ -287,6 +285,7 @@ function wsl_store_hybridauth_user_contacts( $user_id, $provider, $adapter )
 			get_option( 'wsl_settings_contacts_import_google' )    == 1 && strtolower( $provider ) == "google"     ||
 			get_option( 'wsl_settings_contacts_import_twitter' )   == 1 && strtolower( $provider ) == "twitter"    ||
 			get_option( 'wsl_settings_contacts_import_linkedin' )  == 1 && strtolower( $provider ) == "linkedin"   || 
+			get_option( 'wsl_settings_contacts_import_linkedin2' ) == 1 && strtolower( $provider ) == "linkedin2"  || 
 			get_option( 'wsl_settings_contacts_import_live' )      == 1 && strtolower( $provider ) == "live"       ||
 			get_option( 'wsl_settings_contacts_import_vkontakte' ) == 1 && strtolower( $provider ) == "vkontakte"
 		)

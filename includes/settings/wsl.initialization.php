@@ -251,6 +251,7 @@ function wsl_register_setting()
 	register_setting( 'wsl-settings-group-contacts-import'  , 'wsl_settings_contacts_import_google'                           ); 
 	register_setting( 'wsl-settings-group-contacts-import'  , 'wsl_settings_contacts_import_twitter'                          ); 
 	register_setting( 'wsl-settings-group-contacts-import'  , 'wsl_settings_contacts_import_linkedin'                         ); 
+	register_setting( 'wsl-settings-group-contacts-import'  , 'wsl_settings_contacts_import_linkedin2'                        ); 
 	register_setting( 'wsl-settings-group-contacts-import'  , 'wsl_settings_contacts_import_live'                             ); 
 	register_setting( 'wsl-settings-group-contacts-import'  , 'wsl_settings_contacts_import_vkontakte'                        ); 
 

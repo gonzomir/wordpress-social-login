@@ -22,7 +22,7 @@
 *  - That loading screen will refresh it self adding &redirect_to_provider=ture to the url, which will trigger the next step,
 *  - Next, WSL will instantiate Hybridauth main class, build the required provider config then initiate the auth protocol /hybridauth/?hauth.start=PROVIDER_ID,
 *  - Hybridauth will redirect the user to the selected provider site to ask for his consent (authorisation to access his profile),
-*  - If the user gives his authorisation for your application, the provider will redirect the user back to Hybridauth entry point /hybridauth/?hauth.done=PROVIDER_ID,
+*  - If the user gives his authorisation for your application, the provider will redirect the user back to Hybridauth entry point /hybridauth/callbacks/PROVIDER_ID.php,
 *  - Hybridauth will redirect the user to the given callback url.
 *  - In that callback url, WSL will display a second loading screen This loading screen will generate and submit a form with a hidden input &action= wordpress_social_authenticated to the current url which will trigger the second part of the auth process,
 *  - WSL will grab the user profile from the provider, attempt to identify him and create a new WordPress user if he doesn't exist. In this step, and when enabled, WSL will also import the user contacts and map his profile data to Buddypress xporfiles tables,
@@ -936,13 +936,18 @@ function wsl_process_login_build_provider_config( $provider )
 		$config["providers"][$provider]["scope"] = "email, public_profile";
 	}
 
+	if( strtolower( $provider ) == "linkedin2" )
+	{
+		$config["providers"][$provider]["scope"] = "r_liteprofile r_emailaddress w_member_social";
+	}
+
 	// set custom config for google
 	if( strtolower( $provider ) == "google" )
 	{
 		$config["providers"][$provider]["scope"] = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
 	}
 
-	$provider_scope = isset( $config["providers"][$provider]["scope"] ) ? $config["providers"][$provider]["scope"] : '' ;
+	$provider_scope = isset( $config["providers"][$provider]["scope"] ) ? $config["providers"][$provider]["scope"] : '';
 
 	// HOOKABLE: allow to overwrite scopes
 	$config["providers"][$provider]["scope"] = apply_filters( 'wsl_hook_alter_provider_scope', $provider_scope, $provider );

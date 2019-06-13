@@ -97,7 +97,12 @@ function wsl_component_networks_setup()
 
 		if( isset( $item["callback"] ) && $item["callback"] )
 		{
-			$provider_callback_url  = '<span style="color:green">' . $endpoint_url . 'callbacks/' . strtolower($provider_id) . '.php</span>';
+			$provider_callback_url  = '<span style="color:green">' . $endpoint_url . 'callbacks/' . strtolower( $provider_id ) . '.php</span>';
+		}
+
+		if( isset( $item["custom_callback"] ) && $item["custom_callback"] )
+		{
+			$provider_callback_url  = '<span style="color:green">' . $endpoint_url . 'endpoints/' . strtolower( $provider_id ) . '.php</span>';
 		}
 
 		$setupsteps = 0;
@@ -106,7 +111,10 @@ function wsl_component_networks_setup()
 		<div class="stuffbox" id="namediv">
 			<h3>
 				<label class="wp-neworks-label">
-					<img alt="<?php echo $provider_name ?>" title="<?php echo $provider_name ?>" src="<?php echo $assets_base_url . strtolower( $provider_id ) . '.png' ?>" style="vertical-align: top;width:16px;height:16px;" /> <?php _wsl_e( $provider_name, 'wordpress-social-login' ) ?>
+					<img alt="<?php echo $provider_name ?>" title="<?php echo $provider_name ?>" src="<?php echo $assets_base_url . strtolower( $provider_id ) . '.png' ?>" style="vertical-align: top;width:16px;height:16px;" /> <?php _wsl_e( $provider_name, 'wordpress-social-login' ); ?>
+
+					<?php if ( $provider_id == 'LinkedIn' ) { echo _wsl_e( ' (for old applications)', 'wordpress-social-login' ); }
+					elseif ( $provider_id == 'LinkedIn2' ) { echo _wsl_e( ' (for new applications)', 'wordpress-social-login' ); } ?>
 				</label>
 			</h3>
 			<div class="inside">
@@ -226,12 +234,16 @@ function wsl_component_networks_setup()
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Go to Settings page and click on <b>Add Platform</b>. Choose website and enter in the new screen your website url in <b>App Domains</b> and <b>Site URL</b> fields", 'wordpress-social-login') ?>.
 									<?php _wsl_e("They should match with the current hostname", 'wordpress-social-login') ?> <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"]; ?></em>.</p>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Go to the <b>Status & Review</b> page and choose <b>yes</b> where it says <b>Do you want to make this app and all its live features available to the general public?</b>", 'wordpress-social-login') ?>.</p>
+							<?php elseif ( $provider_id == "Twitter" ) :  ?>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("You must apply for a Twitter developer account and be approved before you may create new apps", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Create a new application", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Fill out any required fields such as the application name and description", 'wordpress-social-login') ?>.</p>
 							<?php else: ?>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Create a new application", 'wordpress-social-login') ?>.</p>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Fill out any required fields such as the application name and description", 'wordpress-social-login') ?>.</p>
 							<?php endif; ?>
 
-							<?php if ( $provider_callback_url && $provider_id != "Google" && $provider_id != "Facebook"  ) : ?>
+							<?php if ( $provider_callback_url && $provider_id != "Google"  ) : ?>
 								<p>
 									<?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Provide this URL as the <b>Callback URL</b> for your application", 'wordpress-social-login') ?>:
 									<br />
@@ -241,10 +253,6 @@ function wsl_component_networks_setup()
 
 							<?php if ( $provider_id == "Live" ) : ?>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Put your website domain in the <b>Redirect Domain</b> field. This should match with the current hostname", 'wordpress-social-login') ?> <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"]; ?></em>.</p>
-							<?php endif; ?>
-
-							<?php if ( $provider_id == "LinkedIn" ) : ?>
-								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e('Choose <b>Live</b> on <b>Live Status</b>.', 'wordpress-social-login') ?></p>
 							<?php endif; ?>
 
 							<?php if ( $provider_id == "Google" ) : ?>
@@ -257,6 +265,30 @@ function wsl_component_networks_setup()
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Once you have registered, past the created application credentials into the boxes above", 'wordpress-social-login') ?>.</p>
 							<?php endif; ?>
 
+						<?php endif; ?>
+
+						<?php if ( $provider_id == "Facebook" ) : ?>
+							<table style="text-align: center;margin-bottom:12px;">
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'facebook/1.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'facebook/1.png' ?>"></a></td>
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'facebook/2.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'facebook/2.png' ?>"></a></td>
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'facebook/3.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'facebook/3.png' ?>"></a></td>
+							</table>
+						<?php endif; ?>
+
+						<?php if ( $provider_id == "Google" ) : ?>
+							<table style="text-align: center;margin-bottom:12px;">
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'google/1.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'google/1.png' ?>"></a></td>
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'google/2.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'google/2.png' ?>"></a></td>
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'google/3.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'google/3.png' ?>"></a></td>
+							</table>
+						<?php endif; ?>
+
+						<?php if ( $provider_id == "WordPress" ) : ?>
+							<table style="text-align: center;margin-bottom:12px;">
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'wordpress/1.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'wordpress/1.png' ?>"></a></td>
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'wordpress/2.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'wordpress/2.png' ?>"></a></td>
+								<td><a class="span4 thumbnail" href="<?php echo $assets_setup_base_url . 'wordpress/3.png' ?>" target="_blank"><img src="<?php echo $assets_setup_base_url . 'wordpress/3.png' ?>"></a></td>
+							</table>
 						<?php endif; ?>
 					</div>
 

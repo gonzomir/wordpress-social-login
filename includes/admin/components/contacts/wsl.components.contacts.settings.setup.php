@@ -18,6 +18,7 @@ function wsl_component_contacts_settings_setup()
 		'facebook'  => 'wsl_component_contacts_settings_setup_facebook', 
 		'twitter'   => 'wsl_component_contacts_settings_setup_twitter', 
 		'linkedin'  => 'wsl_component_contacts_settings_setup_linkedin', 
+		'linkedin2' => 'wsl_component_contacts_settings_setup_linkedin', 
 		'live'      => 'wsl_component_contacts_settings_setup_live', 
 		'vkontakte' => 'wsl_component_contacts_settings_setup_vkontakte', 
 	);

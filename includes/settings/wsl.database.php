@@ -149,6 +149,7 @@ function wsl_database_uninstall()
 	delete_option('wsl_settings_contacts_import_google' );
 	delete_option('wsl_settings_contacts_import_twitter' );
 	delete_option('wsl_settings_contacts_import_linkedin' );
+	delete_option('wsl_settings_contacts_import_linkedin2' );
 	delete_option('wsl_settings_contacts_import_live' );
 	delete_option('wsl_settings_contacts_import_vkontakte' );
 
